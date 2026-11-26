@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="mk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Резиденција 26 — Дебар Маало, Скопје</title>
+  <meta name="description" content="Интерактивна презентација на Резиденција 26: изберете кат, стан и разгледајте го во 3D.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Manrope:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <a class="brand" href="#top" aria-label="Резиденција 26">
+    <span class="brand-text"><b>Резиденција</b><em>26</em></span>
+  </a>
+  <nav class="nav-links">
+    <a href="#hero">Објект</a>
+    <a href="#floor">Катови</a>
+    <a href="#units">Станови</a>
+    <a href="#gallery">Галерија</a>
+    <a href="#location">Локација</a>
+  </nav>
+  <a class="btn btn-dark nav-cta" href="#contact">Закажи средба</a>
+</header>
+
+<!-- ========== HERO: ИНТЕРАКТИВНА ЗГРАДА ========== -->
+<section class="hero" id="hero">
+  <div class="hero-media" id="heroMedia">
+    <div class="building" id="building">
+      <img class="mirror l" src="assets/img/front-dusk.jpg" alt="" aria-hidden="true" decoding="async">
+      <img src="assets/img/front-dusk.jpg" alt="Рендер на Резиденција 26" id="buildingImg" fetchpriority="high" decoding="async">
+      <img class="mirror r" src="assets/img/front-dusk.jpg" alt="" aria-hidden="true" decoding="async">
+      <svg id="buildingSvg" viewBox="0 0 1500 2000" preserveAspectRatio="none"></svg>
+    </div>
+    <div class="hero-shade" aria-hidden="true"></div>
+  </div>
+  <div class="floor-tip" id="floorTip"></div>
+
+  <div class="hero-side">
+    <div class="hero-title">
+      <p class="eyebrow light">Дебар Маало · Скопје</p>
+      <h1>Резиденција <em>26</em></h1>
+      <p class="hero-lead">Пет нивоа современо живеење. Заоблени тераси, топло дрво и светлина во секоја просторија.</p>
+    </div>
+
+
+    <div class="hero-foot">
+      <div class="stats" id="heroStats"></div>
+      <div class="legend">
+        <span><i style="background:var(--free)"></i>Слободен</span>
+        <span><i style="background:var(--reserved)"></i>Резервиран</span>
+        <span><i style="background:var(--sold)"></i>Продаден</span>
+      </div>
+    </div>
+  </div>
+
+  <aside class="floor-panel" aria-label="Избор на кат">
+    <p class="fp-head">Изберете кат</p>
+    <div class="floor-picker" id="floorPicker"></div>
+    <p class="fp-hint" id="hintText">или кликнете директно на зградата</p>
+  </aside>
+
+  <div class="view-switch glass" aria-label="Поглед на зградата">
+    <button class="vs-arrow" id="viewPrev" aria-label="Претходен поглед">‹</button>
+    <div class="vs-tabs" id="viewTabs"></div>
+    <button class="vs-arrow" id="viewNext" aria-label="Следен поглед">›</button>
+  </div>
+  <a class="scroll-down" href="#floor" aria-label="Скролај надолу"><span></span></a>
+  <div class="hero-flash" id="heroFlash"></div>
+</section>
+
+<!-- ========== КАТ ========== -->
+<section class="section floor-section" id="floor">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Основи по катови</p>
+      <h2 id="floorTitle">Кат 2</h2>
+      <p class="muted" id="floorSub"></p>
+    </div>
+    <div class="floor-tabs" id="floorTabs" role="tablist"></div>
+  </div>
+
+  <div class="floor-grid">
+    <div class="plan-card">
+      <svg id="floorSvg" viewBox="-1.5 -3 33 23" aria-label="Основа на катот"></svg>
+    </div>
+    <div class="unit-cards" id="unitCards"></div>
+  </div>
+</section>
+
+<!-- ========== ТАБЕЛА ========== -->
+<section class="section" id="units">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Преглед</p>
+      <h2>Сите единици</h2>
+    </div>
+    <div class="filters">
+      <label>Кат
+        <select id="fFloor"><option value="">Сите</option></select>
+      </label>
+      <label>Тип
+        <select id="fKind">
+          <option value="">Сите</option>
+          <option value="flat">Станови</option>
+          <option value="office">Канцеларии</option>
+          <option value="shop">Локали</option>
+        </select>
+      </label>
+      <label>Површина
+        <select id="fArea">
+          <option value="">Сите</option>
+          <option value="0-90">до 90 m²</option>
+          <option value="90-120">90 – 120 m²</option>
+          <option value="120-999">над 120 m²</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="fFree"> Само слободни</label>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <table class="units-table">
+      <thead>
+        <tr><th>Единица</th><th>Кат</th><th>Површина</th><th>Спални</th><th>Ориентација</th><th>Цена</th><th>Статус</th><th></th></tr>
+      </thead>
+      <tbody id="unitsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ========== ГАЛЕРИЈА ========== -->
+<section class="section" id="gallery">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Ентериер и екстериер</p>
+      <h2>Галерија</h2>
+    </div>
+  </div>
+  <div class="gallery" id="galleryGrid"></div>
+</section>
+
+<!-- ========== ЛОКАЦИЈА ========== -->
+<section class="section location" id="location">
+  <div class="loc-copy">
+    <p class="eyebrow">Локација</p>
+    <h2>Најбараната населба во Центар</h2>
+    <p class="muted">Мирна улица во Дебар Маало, на неколку минути пеш од Градскиот парк, Кеј на Вардар и плоштадот Македонија.</p>
+    <ul class="distances">
+      <li><span>Градски парк</span><b>5 мин пеш</b></li>
+      <li><span>Кеј на Вардар</span><b>7 мин пеш</b></li>
+      <li><span>Плоштад Македонија</span><b>12 мин пеш</b></li>
+      <li><span>Училиште и градинка</span><b>4 мин пеш</b></li>
+      <li><span>Градска болница</span><b>6 мин пеш</b></li>
+    </ul>
+  </div>
+  <div class="map">
+    <iframe title="Мапа" loading="lazy" referrerpolicy="no-referrer"
+      src="https://maps.google.com/maps?q=%D0%9F%D0%B8%D1%80%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%2049%2C%20%D0%A1%D0%BA%D0%BE%D0%BF%D1%98%D0%B5&z=16&output=embed"></iframe>
+  </div>
+</section>
+
+<!-- ========== КОНТАКТ ========== -->
+<section class="section contact" id="contact">
+  <div class="contact-card">
+    <div>
+      <p class="eyebrow light">Продажба</p>
+      <h2>Закажете разгледување</h2>
+      <p>Оставете контакт и наш продажен агент ќе ве повика во текот на денот.</p>
+      <div class="phones">
+        <a href="tel:+38972250259">072 250 259</a>
+        <a href="tel:+38923214756">02 3214 756</a>
+      </div>
+      <p class="addr">Дебар Маало, Центар, Скопје</p>
+    </div>
+    <form id="contactForm" autocomplete="on">
+      <label>Име и презиме<input name="name" required></label>
+      <label>Телефон<input name="phone" type="tel" required></label>
+      <label>Интерес за<select name="unit" id="contactUnit"><option value="">Општо прашање</option></select></label>
+      <label>Порака<textarea name="msg" rows="3" placeholder="Кога би ви одговарало разгледување?"></textarea></label>
+      <button class="btn btn-gold" type="submit">Испрати барање</button>
+    </form>
+  </div>
+</section>
+
+<footer class="footer">
+  <span>© 2026 Резиденција 26 · Дебар Маало, Скопје</span>
+  <span class="muted">Сликите се илустративни. Цените и статусите во оваа презентација се демо податоци.</span>
+</footer>
+
+<!-- ========== ТУР: ВЛЕЗ ВО СТАН ========== -->
+<div class="tour" id="tour" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Разгледување на стан">
+  <div class="tour-canvas" id="tourCanvas"></div>
+
+  <header class="tour-top">
+    <button class="tour-back" id="tourBack"><span>←</span> Зграда</button>
+    <div class="tour-title">
+      <p class="eyebrow" id="tourFloor"></p>
+      <h2 id="tourUnit"></h2>
+    </div>
+    <div class="tour-units" id="tourUnits"></div>
+    <button class="btn btn-dark tour-details" id="tourDetails">Цена и детали</button>
+  </header>
+
+  <div class="tour-room glass" id="tourRoom">
+    <p class="eyebrow" id="trCount"></p>
+    <h3 id="trName"></h3>
+    <p class="tr-area" id="trArea"></p>
+  </div>
+
+  <nav class="tour-nav" aria-label="Простории">
+    <button class="icon-btn" id="trPrev" aria-label="Претходна просторија">‹</button>
+    <div class="tour-chips" id="tourChips"></div>
+    <button class="icon-btn" id="trNext" aria-label="Следна просторија">›</button>
+    <button class="tour-overview" id="trOverview">Цел стан</button>
+  </nav>
+
+  <div class="tour-veil" id="tourVeil"></div>
+</div>
+
+<!-- ========== МОДАЛ: СТАН ========== -->
+<div class="modal" id="unitModal" aria-hidden="true" role="dialog" aria-modal="true">
+  <div class="modal-inner">
+    <header class="modal-head">
+      <div>
+        <p class="eyebrow" id="mFloor"></p>
+        <h3 id="mTitle"></h3>
+      </div>
+      <div class="modal-actions">
+        <button class="icon-btn" id="mPrev" aria-label="Претходна единица">‹</button>
+        <button class="icon-btn" id="mNext" aria-label="Следна единица">›</button>
+        <button class="icon-btn close" id="mClose" aria-label="Затвори">✕</button>
+      </div>
+    </header>
+    <div class="modal-body">
+      <div class="viewer-col">
+        <div class="viewer-tabs" id="viewerTabs">
+          <button data-view="3d" class="on">3D модел</button>
+          <button data-view="2d">2D основа</button>
+          <button data-view="plan" id="tabPlan">Оригинален план</button>
+          <button data-view="photos" id="tabPhotos">Ентериер</button>
+        </div>
+        <div class="viewer" id="viewer">
+          <div class="v3d" id="v3d"></div>
+          <div class="v2d" id="v2d"></div>
+          <div class="vplan" id="vplan"><img alt="Оригинална основа"></div>
+          <div class="vphotos" id="vphotos"></div>
+          <div class="viewer-tools" id="viewerTools">
+            <button id="wallToggle">Полни ѕидови</button>
+            <span class="muted small">Влечете за ротација · тркалце за зум</span>
+          </div>
+        </div>
+      </div>
+      <aside class="info-col">
+        <div class="price-row">
+          <div>
+            <span class="status-pill" id="mStatus"></span>
+            <div class="price" id="mPrice"></div>
+            <div class="muted small" id="mPpm"></div>
+          </div>
+          <div class="area-big"><b id="mArea"></b><span>m²</span></div>
+        </div>
+        <div class="facts" id="mFacts"></div>
+        <h4>Простории</h4>
+        <ul class="rooms" id="mRooms"></ul>
+        <div class="cta-row">
+          <button class="btn btn-dark" id="mBook">Закажи разгледување</button>
+          <a class="btn btn-line" href="tel:+38972250259">Повикај</a>
+          <a class="btn btn-line" id="mViber" href="viber://chat?number=%2B38972250259">Viber</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="icon-btn close" id="lbClose" aria-label="Затвори">✕</button>
+  <button class="icon-btn lb-prev" id="lbPrev" aria-label="Претходна">‹</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+  <button class="icon-btn lb-next" id="lbNext" aria-label="Следна">›</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="assets/js/data.js"></script>
+<script src="assets/js/furniture.js"></script>
+<script src="assets/js/viewer3d.js"></script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>
