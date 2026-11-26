@@ -13,11 +13,9 @@
 
 ## 🔗 Живо демо
 
-После вклучување на GitHub Pages (чекор 2 подолу), страната е на:
+**https://donevancevv.github.io/rezidencija-26-demo/**
 
-```
-https://<github-корисник>.github.io/<име-на-repo>/
-```
+Ако направиш fork, твојата верзија ќе биде на `https://<твој-корисник>.github.io/<име-на-repo>/` (види подолу).
 
 ---
 
