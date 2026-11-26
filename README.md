@@ -80,7 +80,7 @@ https://<github-корисник>.github.io/<име-на-repo>/
 | `assets/js/data.js` | **сè што се менува за нов проект**: име, адреса, телефони, погледи, контури на катови, станови, цени, статуси, распореди на соби, галерија |
 | `assets/js/app.js` | логика: херо, катови, анимации, табела, модал |
 | `assets/js/viewer3d.js` + `furniture.js` | 3D тур низ станот (three.js) |
-| `assets/js/three.min.js` | three.js r147 (локално, без CDN) |
+| `assets/vendor/three.min.js` | three.js r147 (локално, без CDN) |
 | `assets/css/styles.css` | стилови |
 | `assets/img/*-w.webp` | широки херо слики за десктоп (2000×1125, зградата на исто место) |
 | `assets/img/*-m.jpg`, `*.jpg` | вертикални херо слики за телефон |
